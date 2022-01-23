@@ -1,0 +1,300 @@
+:root
+{
+    --animation-state: paused;
+    --animation-duration: 2s;
+}
+*, *::before, *::after
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.btn
+{
+    box-shadow: none !important;
+}
+/* Navbar */
+nav
+{
+   height: 5rem;
+   box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+nav .inner-nav
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+nav .inner-nav ul
+{
+    margin-bottom: 0 !important;
+}
+nav .inner-nav ul li.nav-item
+{
+    transition: all 0.5s ease;
+}
+nav .inner-nav ul li.nav-item:hover
+{
+    transform: translateY(-0.5rem);
+}
+
+/* Page */
+section.page
+{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   margin-top: 5rem;
+   margin-bottom: 5rem;
+   text-align: center;
+}
+
+/* Button in Page */
+section.page .btn
+{
+    background-color: transparent;
+    color: var(--bg-dark);
+    outline: none;
+    box-shadow: none;
+    position: relative;
+    overflow: hidden;
+    border: 0.1rem solid var(--bs-blue);
+    transition: all 0.5s ease;
+}
+section.page .btn:hover
+{
+    color: var(--bs-white);
+}
+section.page .btn::before
+{
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bs-blue);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.5s ease;
+    z-index: 1;
+}
+section.page .btn:hover::before
+{
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+section.page .btn span
+{
+    z-index: 5;
+    position: relative;
+}
+
+/* Page Tab-Content */
+section.page .tab-content
+{
+    max-width: 100%;
+    width: 40rem;
+}
+section.page .tab-content label
+{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+section.page .tab-content .heading h1
+{
+    font-size: 3rem;
+    padding: 1rem 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+section.page .tab-content .heading label
+{
+    text-align: left;
+}
+section.page .tab-content .heading input
+{
+    box-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.1),
+                inset 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.01);
+    border: none;
+    outline: none;
+}
+section.page .tab-content .heading .btn-submit
+{
+    min-width: 10rem;
+    align-self: center;
+    background-color: transparent;
+    color: var(--bg-dark);
+    border: 0.1rem solid var(--bs-blue);
+    outline: none;
+    box-shadow: none;
+    position: relative;
+    overflow: hidden;
+}
+section.page .tab-content .heading .btn-submit:hover
+{
+    color: var(--bs-white);
+}
+section.page .tab-content .heading .btn-submit::before
+{
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bs-blue);
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.5s ease;
+}
+section.page .tab-content .heading .btn-submit:hover::before
+{
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+section.page .tab-content .heading .btn-submit::after
+{
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--bs-blue);
+    z-index: -2;
+    animation: move ease infinite;
+    animation-duration: var(--animation-duration);
+    animation-play-state: var(--animation-state);
+    animation-delay: 1s;
+}
+@keyframes move
+{
+    0%
+    {
+        width: 0;
+        transform: translateX(0);
+    }
+    100%
+    {
+        width: 100%;
+        transform: translateX(150%);
+    }
+}
+section.page .tab-content .heading div.alert
+{
+    max-width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: left;
+    padding-bottom: 1rem;
+    font-size: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+}
+
+/* Page Result-Box */
+section.page .result-box
+{
+    margin-top: 5rem;
+    background-color: var(--bs-light);
+    text-align: left;
+    box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
+    display: none;
+}
+section.page .result-box ul
+{
+    padding: 1rem;
+}
+section.page .result-box ul li
+{
+    list-style: none;
+    max-height: 5rem;
+    border-bottom: 0.1rem solid var(--bs-dark);
+    padding: 1rem 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    text-overflow: ellipsis;
+    white-space: normal;
+    overflow: hidden;
+}
+section.page .result-box ul li span.public-video-title,
+section.page .result-box ul li span.private-video-title
+{
+    grid-column: 2/4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+section.page .result-box ul li:first-child
+{
+    text-align: center;
+}
+section.page .result-box ul li:first-child span
+{
+    grid-column: 2;
+}
+
+/* Page Button-Download/Preview */
+section.page .result-box .btn-download
+{
+    border: 0.1rem solid var(--bs-green);
+}
+section.page .result-box .btn-preview
+{
+    border: 0.1rem solid var(--bs-blue);
+}
+
+section.page .result-box .btn-download::before
+{
+    background-color: var(--bs-green);
+}
+section.page .result-box .btn-preview::before
+{
+    background-color: var(--bs-blue);
+}
+
+/* Page Video Preview */
+section.page .modal-body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+section.page .video
+{
+    position: relative;
+    width: 100%;
+    height: 35rem;
+    max-height: 51.2rem;
+    padding: 1rem;
+}
+section.page .video video
+{
+    position: absolute;
+    object-fit: contain !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Private Tabs */
+section.page .tab-content input[type=file]::-webkit-file-upload-button
+{
+    display: none;
+}
+section.page .tab-content #btn-upload
+{
+    text-align: center;
+}
